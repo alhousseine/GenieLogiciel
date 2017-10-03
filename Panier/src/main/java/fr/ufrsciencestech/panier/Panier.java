@@ -10,13 +10,20 @@ import java.util.ArrayList;
  * @author alhousseine
  */
 public class Panier {
-    private ArrayList<Orange> listOrange  = new ArrayList<Orange>();
+    private ArrayList<Orange> listOrange; 
     private int taille;
     
     //Constructeur
-   public Panier(int t)
+   public Panier()
     {
-        taille = t;
+        taille = 15;
+         listOrange= new ArrayList<Orange>();
+    }
+    public Panier(Orange o)
+    {
+        taille = 15;
+         listOrange= new ArrayList<Orange>();
+         listOrange.add(o);
     }
     
     //Accesseur 
@@ -28,12 +35,13 @@ public class Panier {
         listOrange = lo;
     }
     
+    
     //Méthode 
     
     private boolean estPlein()
     {
         int lg = this.listOrange.size();
-        if(lg != 0 )
+        if(lg != 0)
             return true;
         else return false;
     }
@@ -52,6 +60,18 @@ public class Panier {
         {
             s+= o.getOrigine();
             
+        }
+        return s;
+    }
+    
+    //affichage du panier
+    
+    public void affiche()
+    {
+        for(int i=0;i< this.listOrange.size();i++)
+        {
+            System.out.println("prix :" + listOrange.get(i).getPrix());
+            System.out.println("Origine :" + listOrange.get(i).getOrigine());
         }
     }
        
@@ -72,6 +92,27 @@ public class Panier {
         if (listOrange !=null && !listOrange.isEmpty())
         {
             this.listOrange.remove(this.listOrange.size()-1);
+        }
+    }
+    
+    //getPrix panier
+    public double getPrix()
+    {
+        double p=0;
+        for(int i=0; i<this.listOrange.size();i++)
+        {
+            p += listOrange.get(i).getPrix();
+        }
+        return p;
+    }
+    
+    //boycotteOrigigne 
+    public void boycotteOrigine(String orig)
+    {
+        for(int i=0; i< this.listOrange.size(); i++)
+        {
+            if(listOrange.get(i).getOrigine() == orig)
+                listOrange.remove(i);
         }
     }
 }
