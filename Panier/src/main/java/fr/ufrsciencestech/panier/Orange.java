@@ -52,7 +52,8 @@ public class Orange {
     }
      public boolean equals(Object obj)
     {
-        Orange o = (Orange)obj;
+        if(obj == null) return false;
+        Orange o = (Orange)obj;        
        return (this.prix == o.prix && this.origine.equals(o.origine));
     }
 }

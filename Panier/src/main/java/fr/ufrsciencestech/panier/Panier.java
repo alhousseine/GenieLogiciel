@@ -25,6 +25,7 @@ public class Panier {
          listOrange= new ArrayList<Orange>();
          listOrange.add(o);
     }
+
     
     //Accesseur 
     public ArrayList getListOrange(){
@@ -61,7 +62,7 @@ public class Panier {
             s+= o.getOrigine();
             
         }
-        return s;
+        return s; 
     }
     
     //affichage du panier
@@ -71,15 +72,23 @@ public class Panier {
         for(int i=0;i< this.listOrange.size();i++)
         {
             System.out.println("prix :" + listOrange.get(i).getPrix());
-            System.out.println("Origine :" + listOrange.get(i).getOrigine());
+            System.out.println(" Origine :" + listOrange.get(i).getOrigine());
         }
     }
        
-    /* public boolean equals(Object obj)
+     public boolean equals(Object obj)
     {
+        if(obj == null) return false;
+        if(!(obj instanceof Panier)) return false;
         Panier p = (Panier)obj;
-       return (this.listOrange == o.prix && this.origine.equals(o.origine));
-    }*/
+        if(listOrange.size()!=p.listOrange.size()) return false;
+        for(int i=0; i<listOrange.size();i++){
+       if (!(this.listOrange.get(i).getPrix() == p.listOrange.get(i).getPrix()
+               && this.listOrange.get(i).getOrigine().equals(p.listOrange.get(i).getOrigine())));
+        return false;
+        }
+        return true;
+    }
     //Ajout d'orange
     public void ajoute(Orange o)
     {
